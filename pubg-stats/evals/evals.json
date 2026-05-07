@@ -1,0 +1,38 @@
+{
+  "skill_name": "pubg-stats",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "查下 TGLTN 最近 7 天的 PUBG 战绩，给我一个简短总结。",
+      "expected_output": "Runs the PUBG stats tool for player TGLTN over the last 7 days and returns both a concise summary and a battle record list.",
+      "files": [],
+      "expectations": [
+        "The response includes a concise summary for the 7-day window, including sample size and the overall grade.",
+        "The response includes a battle record list rather than summary prose only.",
+        "The battle record list reflects factual match fields from the tool output, such as time, map, mode, kills, assists, damage, rank, or survival time."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "帮我看玩家 mySteamName 昨天打得怎么样，重点看击杀、伤害和排名。",
+      "expected_output": "Converts '昨天' into a concrete Beijing-date query, runs the tool for that single Beijing day, and returns both a focused summary and a battle record list.",
+      "files": [],
+      "expectations": [
+        "The run resolves '昨天' as a single concrete Beijing-date query rather than falling back to the default 3-day window.",
+        "The response highlights kills, damage, and rank in the summary.",
+        "The response includes a battle record list for the queried matches."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "查询 2026-05-04 到 2026-05-07 这几天玩家 Aixleft 的 pubg 数据，如果超过 API 范围就提醒我。",
+      "expected_output": "Uses a date range query for Aixleft, returns a summary plus battle record list, and mentions the API retention limit if it becomes relevant.",
+      "files": [],
+      "expectations": [
+        "The run uses the explicit date range in the prompt instead of replacing it with a default relative window.",
+        "The response includes both a summary and a battle record list.",
+        "If the requested range exceeds the supported PUBG API retention window, the response explicitly mentions the cap or limitation."
+      ]
+    }
+  ]
+}
